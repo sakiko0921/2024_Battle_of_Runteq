@@ -1,0 +1,10 @@
+<%= form_with model:@post do |f| %>
+  <%= f.label :'画像選択' %>
+  <%= f.file_field :text_image, class: "form-control" %>
+  <%= f.hidden_field :text_image_cache %>
+</div>
+<%= f.submit '読込開始', class: "btn btn-primary" %>
+<% end %>
+
+<h5>【画像解析結果のフルテキスト】</h5>
+  <%= @post.transcribed_text %>
