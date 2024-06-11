@@ -7,12 +7,17 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "static_pages#top"
 
-  resources :users, only: %i[new create show edit update destoroy]
-  resources :posts, only: %i[index show new create edit update destroy]
+  resources :users, only: %i[new create edit update]
+  resources :posts, only: %i[new create index show edit update]
+  resources :my_pages, only: %i[top create ]
 
-  get "/login", to: "user_sessions#new"
-  post "/login", to: "user_sessions#create"
+  get "/about", to: "static_pages#about"
 
-  delete "/logout", to: "user_sessions#destroy"
+  get "/my_page", to: "my_pages#top"
+
+  get "/login", to: "users_sessions#new"
+  post "/login", to: "users_sessions#create"
+
+  delete "/logout", to: "users_sessions#destroy"
 
 end

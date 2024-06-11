@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_07_045236) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_131648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_045236) do
     t.string "text_image"
   end
 
+  create_table "text_images", force: :cascade do |t|
+    t.string "text_image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "text_content"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_text_images_on_user_id"
+  end
+
+  create_table "transcribed_texts", force: :cascade do |t|
+    t.string "text_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "text_image_id"
+    t.index ["text_image_id"], name: "index_transcribed_texts_on_text_image_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -34,4 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_045236) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "text_images", "users"
+  add_foreign_key "transcribed_texts", "text_images"
 end

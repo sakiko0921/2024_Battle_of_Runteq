@@ -1,0 +1,27 @@
+<%= form_with(model:@post, local: false, html: { multiple: true }) do |f| %>
+  <label class="form-control">
+    <div class="label mt-3">
+      <span class="label-text">テキスト編集</span>
+    </div>
+    <%= f.text_area :transcribed_text, class: "textarea textarea-bordered h-60 w-full", id: "transcribed_image" %>
+  </label>
+  <label class="form-control mt-3">
+    <div class="label">
+      <span class="label-text">本の題名</span>
+    </div>
+    <%= f.text_field :book, class: "input input-bordered w-full", id: "book" %>
+  </label>
+  <label class="form-control mt-3">
+    <div class="label">
+      <span class="label-text">著書名</span>
+    </div>
+    <%= f.text_field :author, class: "input input-bordered w-full", id: "author" %>
+  </label>
+  <label class="form-control">
+    <div class="label mt-3">
+      <span class="label-text">テキスト編集</span>
+    </div>
+    <%= f.text_area :description, class: "textarea textarea-bordered h-32 w-full", id: "description" %>
+  </label>
+  <%= f.submit 'Submit', class: 'btn btn-active btn-primary mt-3 right-0' %>
+<% end %>
