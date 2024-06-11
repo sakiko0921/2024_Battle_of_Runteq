@@ -35,9 +35,10 @@ class Post < ApplicationRecord
 
     if response.code == "200"
       json_data = JSON.parse(response.body)
-      p text_content = json_data["responses"][0]["fullTextAnnotation"]["text"]
+      text_content = json_data["responses"][0]["fullTextAnnotation"]["text"]
     else
       "読み込みに失敗しました"
     end
+    p text_content
   end
 end

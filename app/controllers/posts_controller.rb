@@ -1,36 +1,31 @@
 class PostsController < ApplicationController
   def new
-    @post = Post.new
+    @post = Post.find(params[:id])
   end
 
   def create
     @post = Post.new(author: params[:author], book: params[:book], description: params[:description], transcribed_text: params[:transcribed_text], text_image: params[:text_image])
 
-    if params[:post][:text_image].present?
-      uploaded_image_path = params[:post][:text_image].tempfile.path
-      @post.transcribed_text = @post.analyze_image(uploaded_image_path)
-
-      if @post.save
-        redirect_to text_images_path(transcribed_text: @post.transcribed_text)
-      else
-        logger.debug @post.errors.full_messages
-        render :new
-      end
+    if @post.save(post_params)
+      redirect_to posts_path(id: @post.id)
     else
-      flash[:alert] = "画像がアップロードされていません"
       render :new
     end
   end
-=begin
-    if @post.save
-      response = @post.analyze_image(@post.text_image.path)
-      @post.create_transcribed_text!(transcribed_text: response)
-      redirect_to text_images_path(transcribed_text: response)
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to posts_path(id: @post.id)
     else
-      logger.debug @post.errors.full_messages
-      render :new
+      render :edit
     end
-=end
+  end
 
   def index
     @posts = Post.all
@@ -38,5 +33,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:author, :book, :description, :transcribed_text, :text_image)
   end
 end
