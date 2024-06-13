@@ -1,20 +1,21 @@
-<header>
 <div class="navbar bg-base-300">
   <div class="flex-1 px-2 lg:flex-none">
-    <a class="text-2xl font-bold text-[#5bafb3]">Stacking your Knowledge</a>
-  </div> 
+    <%= link_to "Stacking your Knowledge", my_page_path, class: "text-2xl font-bold text-[#5bafb3]" %>
+  </div>
   <div class="flex justify-end flex-1 px-2">
     <div class="flex items-stretch">
-      <a class="btn btn-ghost rounded-btn">Log out</a>
+      <%= link_to "Log out", logout_path, data: { "turbo-method": :delete }, class: "btn btn-ghost rounded-btn" %>
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">Menu</div>
         <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-          <li><a>Post</a></li>
-          <li><a>Index</a></li>
-          <li><a>My page</a></li>
+          <li>
+            <%= link_to "my page", my_page_path %>
+          </li>
+          <li>
+            <%= link_to "投稿一覧", posts_path %>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </div>
-</header>

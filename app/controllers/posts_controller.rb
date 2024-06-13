@@ -14,11 +14,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
       redirect_to posts_path(id: @post.id)
@@ -28,11 +28,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = current_user.posts.all
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   private
