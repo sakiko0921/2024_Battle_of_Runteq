@@ -1,6 +1,10 @@
 class Post < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   mount_uploader :text_image, PostUploader
+
+  validates :book, length: { maximum: 255 }
+  validates :author, length: { maximum: 255 }
+  validates :description, length: { maximum: 255 }
 
   def analyze_image(uploaded_image_path)
     # APIキーの設定

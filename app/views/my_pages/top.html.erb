@@ -1,26 +1,38 @@
 <%= render "shared/header" %>
-<div class="container flex flex-col min-h-screen justify-center my-1.5">
-  <div class="container flex justify-center my-1 relative">
+<div class="flex flex-col w-full min-h-screen justify-center my-1.50">
+  <div class="relative flex justify-center my-1">
     <%= image_tag "my_page_sentence_bg2.png", class: "w-7/12 " %>
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg">
-      <% @posts.each do |post| %>
+    <% @posts.each do |post| %>
+      <div class="absolute top-14 font-bold text-2xl">Today's Sentence</div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg">
         <% if post.transcribed_text.present? %>
           <% post.transcribed_text.split("\n").each do |line| %>
             <%= content_tag :br, line, class: 'text-center' %>
           <% end %>
         <% end %>
-        <%= post.book %>
-        <%= post.author %>
+      </div>
+        <ul class='absolute bottom-14 left-1/3'>
+          <li>
+            書籍名: <%= post.book %>
+          </li>
+          <li>
+            著者名: <%= post.author %>
+          </li>
+        </ul>
       <% end %>
     </div>
-  </div>
-  <div>
-    <%= form_with(model:@post, url: my_pages_path, local: false, html: { multiple: true }) do |f| %>
-      <%= f.label :'画像選択', class: "label-text" %>
-      <%= f.file_field :text_image, id: 'text_image' %>
-      <%= f.hidden_field :text_image_cache %>
-      <%= f.submit '読込開始', class: "row btn btn-primary" %>
-    <% end %>
+    <div class='text-center mt-10'>
+      <%= form_with(model:@post, url: my_pages_path, local: false, html: { multiple: true }) do |f| %>
+        <ul>
+          <li>
+            <%= f.label :'画像を選択してください', class: "label-text" %>
+          </li>
+        </ul>
+        <%= f.file_field :text_image, id: 'text_image' %>
+        <%= f.hidden_field :text_image_cache %>
+        <%= f.submit '読込開始', class: "row btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
 <%= render "shared/footer" %>

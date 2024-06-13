@@ -1,11 +1,20 @@
-<!-- Open the modal using ID.showModal() method -->
-<button class="btn" onclick="my_modal_2.showModal()">open modal</button>
-<dialog id="my_modal_2" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click outside to close</p>
+<%= render "shared/header" %>
+<div class="flex flex-col w-full min-h-screen justify-center my-1.5">
+  <div class="col-md-10 col-lg-8 mx-auto text-center">
+    <div class="my-1.5">
+  <div class="textarea textarea-bordered h-60 w-8/12 my-5">
+    <%= @post.transcribed_text %>
   </div>
-  <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-</dialog>
+  <div class="textarea textarea-bordered h-24 w-8/12 my-5">
+    <%= @post.book %>
+  </div>
+  <div class="textarea textarea-bordered h-24 w-8/12 my-5">
+    <%= @post.author %>
+  </div>
+  <div class="textarea textarea-bordered h-60 w-8/12 my-5">
+    <%= @post.description %>
+  </div>
+</div>
+  </div>
+</div>
+<%= render "shared/footer" %>

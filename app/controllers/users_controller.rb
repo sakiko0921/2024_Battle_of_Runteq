@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: %i[new create]
+
   def new
     @user = User.new
   end
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
 
     # ユーザー登録が成功した場合はMyPageにリダイレクト
     if @user.save
-      redirect_to @user
+      redirect_to login_path, notice: "ユーザー登録が完了しました"
     else
       render :new
     end
