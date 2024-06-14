@@ -4,6 +4,16 @@
     <div class="overflow-x-full">
       <table class="table w-full">
         <!-- head -->
+        <div class="my-5 mb-5">
+          <%= search_form_for @q, url: posts_path, method: :get, class: "flex justify-center" do |f| %>
+            <div class="flex justify-center">
+              <%= f.search_field :transcribed_text_cont, class: "input input-bordered w-96 mx-0.5", placeholder: "文章" %>
+              <%= f.search_field :book_cont, class: "input input-bordered w-96 mx-0.5", placeholder: "書籍名" %>
+              <%= f.search_field :author_cont, class: "input input-bordered w-96 mx-0.5", placeholder: "著者名" %>
+              <%= f.submit "検索", class: "btn btn-primary mx-1" %>
+            </div>
+          <% end %>
+        </div>
         <thead>
           <tr class="gird-template-columns: 50% repeat(2, 1fr)" ;="" style="display: grid; grid-template-columns: 50% repeat(2, 1fr);">
             <th width>sentence</th>
@@ -23,14 +33,7 @@
           <% end %>
         </tbody>
       </table>
-      <div class="flex justify-center my-3">
-        <div class="join">
-          <input class="join-item btn btn-square" type="radio" name="options" aria-label="1" checked />
-          <input class="join-item btn btn-square" type="radio" name="options" aria-label="2" />
-          <input class="join-item btn btn-square" type="radio" name="options" aria-label="3" />
-          <input class="join-item btn btn-square" type="radio" name="options" aria-label="4" />
-        </div>
-      </div>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>

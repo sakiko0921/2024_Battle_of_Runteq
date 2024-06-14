@@ -34,7 +34,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.posts.all
+    @q = current_user.posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page])
   end
 
   def show

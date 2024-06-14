@@ -7,8 +7,10 @@
     <div class="mx-12">
       <div class="my-5">
         <span class="label-text">テキスト</span>
-        <div class="textarea textarea-bordered h-40">
-          <%= @post.transcribed_text %>
+        <div class="textarea textarea-bordered">
+          <% @post.transcribed_text.split("\n").each do |line| %>
+            <%= content_tag :br, line, class: 'text-center' %>
+          <% end %>
         </div>
       </div>
       <div class="my-5">
