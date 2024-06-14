@@ -27,8 +27,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+  end
+
   def index
-    @posts = current_user.posts.all
+    @q = current_user.posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page])
   end
 
   def show

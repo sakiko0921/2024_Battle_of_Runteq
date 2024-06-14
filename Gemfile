@@ -40,6 +40,8 @@ gem "google-cloud-vision"
 
 # ユーザー登録
 gem "sorcery"
+gem "kaminari"
+gem "ransack"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

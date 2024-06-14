@@ -45,4 +45,8 @@ class Post < ApplicationRecord
     end
     p text_content
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[author book transcribed_text] # 検索可能な属性のリスト
+  end
 end

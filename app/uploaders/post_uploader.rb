@@ -39,7 +39,7 @@ class PostUploader < CarrierWave::Uploader::Base
   #   %w(jpg jpeg gif png)
   # end
   def extension_allowlist
-    %w(jpg jpeg png)
+    %w(jpg jpeg png gif)
   end
 
   def cache_dir

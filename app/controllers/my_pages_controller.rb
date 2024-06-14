@@ -14,7 +14,8 @@ class MyPagesController < ApplicationController
       if @post.save
         redirect_to edit_post_path(id: @post.id)
       else
-        render :my_pages
+        puts @post.errors.full_messages
+        render :my_page
       end
     else
       flash[:alert] = "画像がアップロードされていません"

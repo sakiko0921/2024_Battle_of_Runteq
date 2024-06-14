@@ -1,0 +1,20 @@
+databases:
+  - name: stacking-your-knowledge
+    databaseName: stacking_your_knowledge
+    user: stacking_your_knowledge_user
+    region: singapore
+
+services:
+  - type: web
+    name: stacking_your_knowledge
+    env: docker
+    region: singapore
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: <%= ENV['DATABASE_URL'] %>
+        fromDatabase:
+          name: render_app
+          property: connectionString
+      - key: <%= ENV['RAILS_MASTER_KEY'] %>
+        sync: false
