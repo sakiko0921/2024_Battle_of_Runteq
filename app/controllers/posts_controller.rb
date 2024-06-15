@@ -7,8 +7,9 @@ class PostsController < ApplicationController
     @post = Post.new(author: params[:author], book: params[:book], description: params[:description], transcribed_text: params[:transcribed_text], text_image: params[:text_image])
 
     if @post.save(post_params)
-      redirect_to posts_path(id: @post.id)
+      redirect_to posts_path(id: @post.id), success: "投稿しました"
     else
+      flash.now[:danger] = "投稿に失敗しました"
       render :new
     end
   end
@@ -21,8 +22,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to posts_path(id: @post.id)
+      redirect_to posts_path(id: @post.id), success: "更新しました"
     else
+      flash.now[:danger] = "更新に失敗しました"
       render :edit
     end
   end
