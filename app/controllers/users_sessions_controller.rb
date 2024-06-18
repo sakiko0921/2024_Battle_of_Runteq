@@ -5,16 +5,16 @@ class UsersSessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password])
-      redirect_to my_page_path, notice: "ログインしました"
+      redirect_to my_page_path, success: "ログインしました"
     else
       @user = User.new(email: params[:email])
-      flash.now[:alert] = "ログインに失敗しました"
+      flash.now[:danger] = "ログインに失敗しました"
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to login_path, status: :see_other, notice: "ログアウトしました"
+    redirect_to login_path, status: :see_other, success: "ログアウトしました"
   end
 end

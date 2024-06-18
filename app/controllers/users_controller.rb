@@ -10,9 +10,10 @@ class UsersController < ApplicationController
 
     # ユーザー登録が成功した場合はMyPageにリダイレクト
     if @user.save
-      redirect_to login_path, notice: "ユーザー登録が完了しました"
+      redirect_to login_path, success: "ユーザー登録が完了しました"
     else
-      render :new
+      flash.now[:danger] = "ユーザー登録に失敗しました"
+      render :new, status: :unprocessable_entity
     end
   end
 
