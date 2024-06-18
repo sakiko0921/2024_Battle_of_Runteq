@@ -47,6 +47,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:author, :book, :description, :transcribed_text, :text_image)
+    params.require(:post).permit(:author, :book, :description, :transcribed_text, :text_image, :text_image_cache)
   end
 end
