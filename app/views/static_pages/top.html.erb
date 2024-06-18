@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full min-h-screen justify-center my-1.5">
+<div class="flex w-full min-h-screen justify-center my-1.5">
   <div class="w-9/12">
     <%= image_tag "top_image_3.png" %>
     <div class="flex w-full justify-center">
@@ -10,6 +10,9 @@
         <%= link_to "Log in", login_path %>
       </button>
     </div>
+  <div class="divider mt-10">使い方</div>
+  <div class="flex flex-col w-full justify-center">
+    <%= render 'shared/about' %>
   </div>
 </div>
 
