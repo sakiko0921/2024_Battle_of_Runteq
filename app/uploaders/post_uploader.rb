@@ -43,7 +43,7 @@ class PostUploader < CarrierWave::Uploader::Base
   end
 
   def cache_dir
-    "#{Rails.root}/tmp/uploads"
+    "/tmp/uploads"
   end
 
   # Override the filename of the uploaded files:
