@@ -42,9 +42,9 @@ class PostUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png gif)
   end
 
-  def cache_dir
-    "/opt/render/project/src/tmp/uploads"
-  end
+  #def cache_dir
+  #  "/opt/render/project/src/tmp/uploads"
+  #end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
