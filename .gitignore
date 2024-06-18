@@ -40,3 +40,5 @@
 /node_modules
 
 computer_vision.rb
+
+/public/uploads
