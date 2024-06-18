@@ -15,19 +15,24 @@
           <% end %>
         </div>
         <thead>
-          <tr class="gird-template-columns: 50% repeat(2, 1fr)" ;="" style="display: grid; grid-template-columns: 50% repeat(2, 1fr);">
+          <tr class="gird-template-columns: 40% repeat(4, 1fr)" ;="" style="display: grid; grid-template-columns: 40% repeat(4, 1fr);">
             <th width>sentence</th>
             <th>book</th>
             <th>author</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% if @posts.present? %>
             <% @posts.each do |post| %>
-              <tr class="hover gird-template-columns: 50% repeat(2, 1fr)" ;="" style="display: grid; grid-template-columns: 50% repeat(2, 1fr);">
+              <tr class="hover gird-template-columns: 40% repeat(4, 1fr)" ;="" style="display: grid; grid-template-columns: 40% repeat(4, 1fr);">
                 <td class="truncate"><%= link_to post.transcribed_text, post_path(post) %></td>
                 <td class="truncate"><%= post.book %></td>
                 <td class="truncate"><%= post.author %></td>
+                <td class="flex justify-end">
+                  <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-secondary mx-1" %>
+                  <%= link_to "削除", post_path(post), data: { "turbo-method": :delete, turbo_confirm: "削除しますか" }, class: "btn btn-sm btn-danger mx-1" %>
               </tr>
             <% end %>
           <% end %>
